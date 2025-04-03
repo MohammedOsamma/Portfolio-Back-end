@@ -70,8 +70,33 @@ const editCertificate = async (req, res) => {
   }
 };
 
+const deleteCertificate = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const findCert = await Certificate.findByIdAndDelete(id);
+
+    if (!findCert) {
+      return res.status(404).json({
+        success: false,
+        message: "Certificate not Found!",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Certificate Deleted Successfully!",
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      success: false,
+      message: "Error Occured",
+    });
+  }
+};
 module.exports = {
   addCertificate,
   fetchAllCert,
   editCertificate,
+  deleteCertificate,
 };
