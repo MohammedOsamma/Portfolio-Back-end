@@ -22,6 +22,24 @@ const addCertificate = async (req, res) => {
   }
 };
 
+const fetchAllCert = async (req, res) => {
+  try {
+    const certificateList = await Certificate.find({});
+
+    res.status(200).json({
+      success: true,
+      data: certificateList,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      success: false,
+      message: "Error Occured",
+    });
+  }
+};
+
 module.exports = {
   addCertificate,
+  fetchAllCert,
 };
