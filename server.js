@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const adminProjectRouter = require("./routes/admin/project-routes");
 require("dotenv").config();
 
 mongoose
@@ -14,7 +15,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "",
+    origin: "http://localhost:3000",
     methods: ["GET", "POST", "DELETE", "PUT"],
     allowedHeaders: [
       "Content-Type",
@@ -23,11 +24,12 @@ app.use(
       "Expires",
       "Pragma",
     ],
-    withCredintal: true,
+    credentials: true,
   })
 );
 
-app.use(cookieParser);
+app.use(cookieParser());
 app.use(express.json());
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT} `));
+app.use("/api/admin/project", adminProjectRouter);
+app.listen(5000, () => console.log(`Server running on port ${PORT} `));

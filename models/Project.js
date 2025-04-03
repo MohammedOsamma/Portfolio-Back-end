@@ -5,7 +5,7 @@ const projectSchema = new mongoose.Schema(
     image: String,
     title: String,
     skills: [{ type: String }],
-    githubLink: String,
+    codeLink: String,
     demoLink: String,
   },
   {
