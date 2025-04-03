@@ -4,7 +4,6 @@ const certificateSchema = new mongoose.Schema(
   {
     image: String,
     name: String,
-    certLink: String,
   },
   {
     timestamps: true,
