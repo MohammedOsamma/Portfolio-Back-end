@@ -29,6 +29,11 @@ const addProject = async (req, res) => {
 
 const fetchAllProjects = async (req, res) => {
   try {
+    const projectList = await Project.find({});
+    res.status(200).json({
+      success: true,
+      data: projectList,
+    });
   } catch (err) {
     console.log(err);
     res.status(500).json({
