@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const authRouter = require("./routes/auth/auth-routes");
 const adminProjectRouter = require("./routes/admin/project-routes");
 const adminCertificatetRouter = require("./routes/admin/certificate-routes");
 require("dotenv").config();
@@ -32,6 +33,7 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 
+app.use("/api/auth", adminProjectRouter);
 app.use("/api/admin/project", adminProjectRouter);
 app.use("/api/admin/certificate", adminCertificatetRouter);
 
